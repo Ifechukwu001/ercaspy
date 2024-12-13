@@ -38,7 +38,6 @@ class Request:
     @classmethod
     def process_response(cls, resp):
         response = resp.json()
-        print(resp, response)
 
         if resp.status_code == 400:
             message = response.get("errorMessage")
