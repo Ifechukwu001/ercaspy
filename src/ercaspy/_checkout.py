@@ -5,7 +5,7 @@ from ._api_call import Request
 
 class Checkout:
     @staticmethod
-    def initialize(
+    def initiate(
         payment_ref: str,
         amount: int,
         customer: dict[Literal["name", "email", "phone"], str],
@@ -37,5 +37,11 @@ class Checkout:
     @staticmethod
     def verify(transaction_ref: str):
         url = f"{config.API_URL}/payment/transaction/verify/{transaction_ref}"
+        response = Request.call(Request.Method.GET, url)
+        return response
+
+    @staticmethod
+    def cancel(transaction_ref: str):
+        url = f"{config.API_URL}/payment/cancel/{transaction_ref}"
         response = Request.call(Request.Method.GET, url)
         return response
