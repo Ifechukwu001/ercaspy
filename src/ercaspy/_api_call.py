@@ -43,6 +43,9 @@ class Request:
         if resp.status_code == 400:
             message = response.get("errorMessage")
             raise error.ErcasBadRequestError(message)
+        if resp.status_code == 404:
+            message = response.get("errorMessage")
+            raise error.ErcasNotFoundError(message)
         if resp.status_code == 422:
             message = response.get("errorMessage")
             raise error.ErcasUnprocessableError(message)
